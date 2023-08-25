@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Input Form</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: sans-serif;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: url("sam.png");
+      background-size: cover;
+    }
+
+    .form-title {
+      font-size: 26px;
+      font-weight: 600;
+      text-align: center;
+      padding-bottom: 6px;
+      color: black;
+      border-bottom: solid 1px white;
+    }
+
+    .form-container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      width: 400px;
+    }
+
+    .form-container label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    .form-container input[type="text"],
+    .form-container input[type="tel"],
+    .form-container input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .form-container label.gender-label {
+      margin-top: 10px;
+      display: block;
+    }
+
+    .form-container input[type="radio"] {
+      margin-right: 5px;
+    }
+
+    .form-container button[type="submit"] {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="form-container">
+    <h1 class="form-title">USER INPUT FORM</h1>
+    <form action="#">
+      <form id="userForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+
+        <label class="gender-label">Gender:</label>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label>
+
+        <button class="btn" id="sb" type="submit">Submit</button>
+      </form>
+  </div>
+  <script>
+  const form = document.getElementById('userForm');
+  const submitButton = document.getElementById('sb'); 
+  
+  submitButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    
+    const name = document.getElementById('name').value;
+    const phoneNumber = document.getElementById('phoneNumber').value;
+    const email = document.getElementById('email').value;
+    const gender = document.querySelector('input[name="gender"]:checked').value;
+    
+    const userData = {
+      name,
+      phoneNumber,
+      email,
+      gender
+    };
+    
+    //data stored in session storage
+    sessionStorage.setItem('userData', JSON.stringify(userData));
+    
+    alert('Data submitted successfully.');
+  });
+</script>
+</body>
+
+</html>
